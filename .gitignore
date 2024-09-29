@@ -1,0 +1,5 @@
+*build*/
+build_exports/
+LearnOpenGL
+*.swp
+learnopengl.pdf
