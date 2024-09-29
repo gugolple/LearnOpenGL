@@ -3,7 +3,7 @@
 // Just standard C++ libraries
 #include <vector>
 // OpenGL specifics
-#include <glad/glad.h>
+#include <glad.h>
 #include <GLFW/glfw3.h>
 
 #include "shader_unit.hpp"

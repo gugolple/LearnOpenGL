@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 // OpenGL specifics
-#include <glad/glad.h>
+#include <glad.h>
 #include <GLFW/glfw3.h>
 
 

@@ -4,7 +4,7 @@
 #include "shader_handler.hpp"
 
 // OpenGL specifics
-#include <glad/glad.h>
+#include <glad.h>
 #include <GLFW/glfw3.h>
 
 #define VERTICES_TYPE float
