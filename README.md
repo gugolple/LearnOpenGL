@@ -39,5 +39,18 @@ cmake -S . -B build
 cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug 
 ```
 
+Additionally, when debuggin compile errors, do not forget to check the compiler
+call to verify the correct includes are being used.
+```{=sh}
+# The basic
+make VERBOSE=1
+
+# If you want it to see in a terminal editor
+make VERBOSE=1 | vim -
+
+# If you want to see errors included
+make VERBOSE=1 2>&1 | vim -
+```
+
 # Sources
 - [learnopengl](https://learnopengl.com/book/book_pdf.pdf)
