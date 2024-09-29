@@ -17,12 +17,27 @@ folder. All of this is under [chapters](./chapters/).
 Compile GLFW normally and then I have setted it up to use the relative path at
 this unit of './build_exports/'. For that install it with (expected to be run at 
 './glfw/build/':
+
 ```{=sh}
 make DESTDIR=../../build_exports/ install
 ```
 
-For the compilation of the chapter units have already been setted up to search
-for the files at the specified location.
+You will probably need to follow the instructions given by the book due to
+glfw not being the most trivial unit to compile.
+
+# Compiling
+
+For all the chapters there is a CMakeLists.txt file. the way I have
+setted it up to work is to invoke cmake and create a subdirectory with
+**build** in the name. This are the two most common invocations I use:
+
+```{=sh}
+# This at the chapter level so CMakeLists.txt is at current level
+# For normal compilation with -Os as default of cmake
+cmake -S . -B build
+# For the debugging needs.
+cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug 
+```
 
 # Sources
 - [learnopengl](https://learnopengl.com/book/book_pdf.pdf)
