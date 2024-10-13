@@ -3,6 +3,8 @@
 std::string loadShader(const char* filename){
 	// Manage relative path
 	std::filesystem::path p = std::filesystem::current_path() / filename;
+	// Sanity check that the shader exists
+	assert(std::filesystem::status(p).type()!=std::filesystem::file_type::not_found);
 	std::ifstream myfile(filename);
 
 	std::string buffer((std::istreambuf_iterator<char>(myfile)),
