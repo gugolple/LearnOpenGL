@@ -11,6 +11,7 @@
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
+// My own files/libraries
 #include "shader_handler.hpp"
 #include "drawable.hpp"
 #include "logger.hpp"
@@ -74,32 +75,14 @@ Drawable createTraingle1() {
 	ShaderProgram shaderProgram = ShaderProgram(std::move(shaders));
 	// Triangle 1 construction
 	std::vector<float> vertices = {
-		-1.0f, -1.0f, 0.0f,
-		-1.0f, 1.0f, 0.0f,
-		-0.3f, 0.0f, 0.0f
+		-0.5f, -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
 	};
 	std::vector<unsigned int> indices = {
 		0,1,2
 	};
-	return Drawable(std::move(vertices), std::move(indices), std::move(shaderProgram));
-};
-
-Drawable createTraingle2() {
-	// Triangle 2 -- Shader setup
-	std::vector<ShaderUnit> shaders = std::vector<ShaderUnit>();
-	shaders.emplace_back("vertex_shader.glsl",GL_VERTEX_SHADER);
-	shaders.emplace_back("fragment_shader_green.glsl",GL_FRAGMENT_SHADER);
-	ShaderProgram shaderProgram = ShaderProgram(std::move(shaders));
-	// Triangle 2 construction
-	std::vector<float> vertices = {
-		1.0f, -1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		0.3f, 0.0f, 0.0f
-	};
-	std::vector<unsigned int> indices = {
-		0,1,2
-	};
-	return Drawable(std::move(vertices), std::move(indices), std::move(shaderProgram));
+	return Drawable(std::move(vertices), std::move(indices), 3, std::move(shaderProgram));
 };
 
 int main()
@@ -111,11 +94,11 @@ int main()
 	prepareWindow(window);
 
 	// After this point GL is ready
-	Drawable triangle1 = createTraingle1();
-	Drawable triangle2 = createTraingle2();
 	// Start log system
 	logger::init();
 
+	// Start drawing
+	Drawable triangle1 = createTraingle1();
 
 	// Infinite loop preventing close
 	while(!glfwWindowShouldClose(window))
@@ -127,7 +110,6 @@ int main()
 		draw_func(window);
 		//Temporary until reworked into a class or other solution
 		triangle1.render();
-		triangle2.render();
 
 		// Swap screens, double buffered
 		glfwSwapBuffers(window);

@@ -2,8 +2,9 @@
 
 Drawable::Drawable(std::vector<float> &&vertices,
 		std::vector<unsigned int> &&indices,
+		unsigned int numVerts,
 		ShaderProgram &&shaderProgram):
-	vertices(vertices), indices(indices), shaderProgram(shaderProgram) {
+	vertices(vertices), indices(indices), shaderProgram(shaderProgram), numVerts(numVerts) {
 	assert(indices.size()%3==0);
 	// Initialize to known values to check correct initialization
 	this->VBO = -1;
@@ -49,6 +50,6 @@ Drawable::~Drawable() {
 void Drawable::render() {
 	glUseProgram(this->shaderProgram.getShaderProgram());
 	glBindVertexArray(this->VAO);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, this->numVerts, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

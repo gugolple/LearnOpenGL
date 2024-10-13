@@ -14,6 +14,7 @@ class Drawable {
 	public:
 		Drawable(std::vector<VERTICES_TYPE> &&vertices,
 				std::vector<INDICES_TYPE> &&indices,
+				unsigned int numVerts,
 				ShaderProgram &&shaderProgram);
 		~Drawable();
 		void render();
@@ -23,6 +24,7 @@ class Drawable {
 		unsigned int VBO;
 		unsigned int VAO;
 
+		const unsigned int numVerts;
 		const std::vector<VERTICES_TYPE> vertices;
 		// We start from 0 and blocks of 3 numbers, because we draw triangles
 		const std::vector<INDICES_TYPE> indices;
