@@ -13,14 +13,14 @@ std::string loadShader(const char* filename){
 }
 
 int check_status(unsigned int element, GLenum pname, const char* message) {
-	int success = -1;
+	int success = 0;
 	char infoLog[512];
 	infoLog[0] = '\0';
 	glGetShaderiv(element, pname, &success);
 	if(!success)
 	{
 		glGetShaderInfoLog(element, 512, NULL, infoLog);
-		std::cout << element << " - " << message << infoLog << std::endl;
+		std::cout << element << " - " << message << infoLog;
 	}
 	assert(success);
 	return success;
