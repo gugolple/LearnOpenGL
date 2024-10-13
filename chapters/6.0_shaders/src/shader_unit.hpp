@@ -12,16 +12,19 @@
 #include <GLFW/glfw3.h>
 
 
-int check_status(unsigned int element, GLenum pname, const char* message);
+int check_status_program(unsigned int element, GLenum pname, const char* message);
+int check_status_shader(unsigned int element, GLenum pname, const char* message);
 
 class ShaderUnit {
 	public:
 		ShaderUnit(const char* filename, GLenum shaderType);
+		ShaderUnit(const ShaderUnit&) = delete;
+		ShaderUnit(ShaderUnit&&);
 		~ShaderUnit();
-		GLuint getShader();
-		GLenum getShaderType();
+		GLuint getShader() const;
+		GLenum getShaderType() const;
 	private:
-		const GLuint shader;
+		GLuint shader;
 		const GLenum shaderType; 
 };
 

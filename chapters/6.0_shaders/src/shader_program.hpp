@@ -12,8 +12,9 @@ class ShaderProgram {
 	public:
 		// Take over the vector of shaders for this program
 		ShaderProgram(std::vector<ShaderUnit> &&shaderUnits);
+		ShaderProgram(ShaderProgram&&);
 		~ShaderProgram();
-		GLuint getShaderProgram();
+		GLuint getShaderProgram() const;
 	private:
 		GLuint shaderProgram;
 		std::vector<ShaderUnit> shaders;

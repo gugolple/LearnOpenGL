@@ -18,6 +18,7 @@ class Drawable {
 				ShaderProgram &&shaderProgram);
 		~Drawable();
 		void render();
+		const ShaderProgram& getShaderProgram();
 	private:
 		ShaderProgram shaderProgram;
 		unsigned int EBO;

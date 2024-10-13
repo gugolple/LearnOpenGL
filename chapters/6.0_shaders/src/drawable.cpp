@@ -4,7 +4,7 @@ Drawable::Drawable(std::vector<float> &&vertices,
 		std::vector<unsigned int> &&indices,
 		unsigned int numVerts,
 		ShaderProgram &&shaderProgram):
-	vertices(vertices), indices(indices), shaderProgram(shaderProgram), numVerts(numVerts) {
+	vertices(vertices), indices(indices), shaderProgram(std::move(shaderProgram)), numVerts(numVerts) {
 	assert(indices.size()%3==0);
 	// Initialize to known values to check correct initialization
 	this->VBO = -1;
@@ -33,7 +33,7 @@ Drawable::Drawable(std::vector<float> &&vertices,
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(INDICES_TYPE)*this->indices.size(), this->indices.data(),
 			GL_STATIC_DRAW);
 	// 3. then set our vertex attributes pointers
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+	glVertexAttribPointer(0, this->numVerts, GL_FLOAT, GL_FALSE, this->numVerts * sizeof(float),
 			(void*)0);
 	glEnableVertexAttribArray(0);
 };
@@ -51,5 +51,8 @@ void Drawable::render() {
 	glUseProgram(this->shaderProgram.getShaderProgram());
 	glBindVertexArray(this->VAO);
 	glDrawElements(GL_TRIANGLES, this->numVerts, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+}		
+
+const ShaderProgram& Drawable::getShaderProgram(){
+	return this->shaderProgram;
 }
