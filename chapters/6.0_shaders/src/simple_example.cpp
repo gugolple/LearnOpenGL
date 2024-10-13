@@ -13,6 +13,7 @@
 
 #include "shader_handler.hpp"
 #include "drawable.hpp"
+#include "logger.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -112,6 +113,8 @@ int main()
 	// After this point GL is ready
 	Drawable triangle1 = createTraingle1();
 	Drawable triangle2 = createTraingle2();
+	// Start log system
+	logger::init();
 
 
 	// Infinite loop preventing close

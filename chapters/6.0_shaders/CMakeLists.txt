@@ -28,6 +28,7 @@ add_executable(example
 	src/shader_program.cpp
 	src/shader_unit.cpp
 	src/drawable.cpp
+	src/logger.cpp
 	${PROJECT_BINARY_DIR}/.shaders
 )
 
