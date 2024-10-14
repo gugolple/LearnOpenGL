@@ -7,13 +7,13 @@ lint:
 		src/figures/*.hpp\
 		src/figures/*.cpp
 
-build-debug/Makefile:
+build-debug/Makefile: CMakeLists.txt
 	cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug
 
 debug: build-debug/Makefile
 	cd build-debug ; make -j$(nproc) && gdb ./example
 
-build/Makefile:
+build/Makefile: CMakeLists.txt
 	cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 
 run: build/Makefile
