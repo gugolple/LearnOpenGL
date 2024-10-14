@@ -15,10 +15,10 @@
 
 // My own files/libraries
 #include "drawable.hpp"
-#include "logger.hpp"
-#include "shader_handler.hpp"
 #include "figures/triangle1.hpp"
 #include "figures/triangle2.hpp"
+#include "logger.hpp"
+#include "shader_handler.hpp"
 
 void
 framebuffer_size_callback(GLFWwindow* window, int width, int height)
