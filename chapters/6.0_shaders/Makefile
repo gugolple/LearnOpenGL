@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-.PHONY: lint clean run debug
+.PHONY: lint clean run debug run-build debug-build
 
 lint:
 	clang-format --style='mozilla' -i\
@@ -12,14 +12,22 @@ lint:
 build-debug/Makefile: CMakeLists.txt
 	cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug
 
-debug: build-debug/Makefile lint
-	cd build-debug ; make -j$(nproc) && gdb ./example
+debug-build: lint build-debug/Makefile 
+	cd build-debug ; make -j$(nproc)
+
+debug: debug-build
+	cd build-debug ; gdb ./example
 
 build/Makefile: CMakeLists.txt
 	cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 
-run: build/Makefile lint
-	cd build ; make -j$(nproc) && ./example
+run-build: build/Makefile
+	cd build ; make -j$(nproc)
+
+run: run-build
+	cd build ; ./example
+
+all: debug-build run-build
 
 clean:
 	rm -rf build/ build-debug/
