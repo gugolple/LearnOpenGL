@@ -30,6 +30,8 @@ add_custom_command(
 	COMMAND touch -m ${PROJECT_BINARY_DIR}/.shaders 
 )
 
+# We know all in figures we want to be available for compile and linking
+file(GLOB FIGURE_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/src/figures/*.cpp")
 # Main executable, if it is not in a library the source should be listed below
 add_executable(example
 	src/drawable.cpp
@@ -37,11 +39,8 @@ add_executable(example
 	src/shader_program.cpp
 	src/shader_unit.cpp
 	src/simple_example.cpp
-	src/figures/triangle1.cpp
-	src/figures/triangle2.cpp
-	src/figures/triangle3.cpp
-	src/figures/triangle_ej1.cpp
-	src/figures/triangle_ej2.cpp
+	# Add all figures in one go
+	${FIGURE_SRCS}
 	# Add shader dependency
 	${PROJECT_BINARY_DIR}/.shaders
 )
