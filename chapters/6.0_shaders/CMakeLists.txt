@@ -40,6 +40,7 @@ add_executable(example
 	src/figures/triangle1.cpp
 	src/figures/triangle2.cpp
 	src/figures/triangle3.cpp
+	src/figures/triangle_ej1.cpp
 	# Add shader dependency
 	${PROJECT_BINARY_DIR}/.shaders
 )

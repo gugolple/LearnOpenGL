@@ -15,7 +15,7 @@
 
 // My own files/libraries
 #include "drawable.hpp"
-#include "figures/triangle3.hpp"
+#include "figures/triangle_ej1.hpp"
 #include "logger.hpp"
 #include "shader_handler.hpp"
 
@@ -88,7 +88,7 @@ main()
   logger::init();
 
   // Start drawing
-  Triangle3 triangle3 = Triangle3();
+  std::unique_ptr<Drawable> triangle = std::make_unique<Triangle_ej1>();
 
   // Infinite loop preventing close
   while (!glfwWindowShouldClose(window)) {
@@ -98,12 +98,13 @@ main()
     // Draw
     draw_func(window);
     // Temporary until reworked into a class or other solution
-    triangle3.render();
+    triangle->render();
 
     // Swap screens, double buffered
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
+  triangle.reset();
 
   // Cleanup
   glfwTerminate();
