@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.15...3.30)
 
 project(
-  LearnOpenGl
-  VERSION 1.0
-  LANGUAGES C CXX)
+	LearnOpenGl
+	VERSION 1.0
+	LANGUAGES C CXX)
+
+set(CMAKE_CXX_CLANG_TIDY
+	clang-tidy;
+	-format-style='mozilla';
+	-header-filter=${CMAKE_CURRENT_SOURCE_DIR};
+	-checks=clang-analyzer-*,-clang-analyzer-cplusplus*;
+	--fix;
+)
 
 # Compile independently the GLAD library
 add_library(libglad STATIC src/glad/glad.c)
@@ -16,10 +24,10 @@ target_include_directories(libglad PUBLIC ${CMAKE_SOURCE_DIR}/src/glad/)
 file(GLOB example_SHADERS "${CMAKE_CURRENT_SOURCE_DIR}/shaders/*.glsl")
 # Copy shaders, custom command as dependency of main executable
 add_custom_command(
-  OUTPUT ${PROJECT_BINARY_DIR}/.shaders
-  DEPENDS ${example_SHADERS}
-  COMMAND cp ${PROJECT_SOURCE_DIR}/shaders/* ${PROJECT_BINARY_DIR}/
-  COMMAND touch -m ${PROJECT_BINARY_DIR}/.shaders 
+	OUTPUT ${PROJECT_BINARY_DIR}/.shaders
+	DEPENDS ${example_SHADERS}
+	COMMAND cp ${PROJECT_SOURCE_DIR}/shaders/* ${PROJECT_BINARY_DIR}/
+	COMMAND touch -m ${PROJECT_BINARY_DIR}/.shaders 
 )
 
 # Main executable, if it is not in a library the source should be listed below

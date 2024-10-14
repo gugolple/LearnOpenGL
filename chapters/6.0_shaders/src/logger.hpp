@@ -2,7 +2,8 @@
 #define LOGGER_HPP
 
 namespace logger {
-	void init(void);
+void
+init(void);
 }
 
 #endif
