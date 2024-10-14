@@ -15,8 +15,7 @@
 
 // My own files/libraries
 #include "drawable.hpp"
-#include "figures/triangle1.hpp"
-#include "figures/triangle2.hpp"
+#include "figures/triangle3.hpp"
 #include "logger.hpp"
 #include "shader_handler.hpp"
 
@@ -89,8 +88,7 @@ main()
   logger::init();
 
   // Start drawing
-  Triangle1 triangle1 = Triangle1();
-  Triangle2 triangle2 = Triangle2();
+  Triangle3 triangle3 = Triangle3();
 
   // Infinite loop preventing close
   while (!glfwWindowShouldClose(window)) {
@@ -100,8 +98,7 @@ main()
     // Draw
     draw_func(window);
     // Temporary until reworked into a class or other solution
-    triangle2.render();
-    triangle1.render();
+    triangle3.render();
 
     // Swap screens, double buffered
     glfwSwapBuffers(window);
