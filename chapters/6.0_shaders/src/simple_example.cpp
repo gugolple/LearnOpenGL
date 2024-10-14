@@ -17,7 +17,8 @@
 #include "drawable.hpp"
 #include "logger.hpp"
 #include "shader_handler.hpp"
-#include "triangle1.hpp"
+#include "figures/triangle1.hpp"
+#include "figures/triangle2.hpp"
 
 void
 framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -89,6 +90,7 @@ main()
 
   // Start drawing
   Triangle1 triangle1 = Triangle1();
+  Triangle2 triangle2 = Triangle2();
 
   // Infinite loop preventing close
   while (!glfwWindowShouldClose(window)) {
@@ -99,6 +101,7 @@ main()
     draw_func(window);
     // Temporary until reworked into a class or other solution
     triangle1.render();
+    triangle2.render();
 
     // Swap screens, double buffered
     glfwSwapBuffers(window);
