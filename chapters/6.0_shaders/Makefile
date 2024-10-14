@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := run
+
 .PHONY: lint clean run debug
 
 lint:
