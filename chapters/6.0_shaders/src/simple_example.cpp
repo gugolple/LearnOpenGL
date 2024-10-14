@@ -17,6 +17,7 @@
 #include "drawable.hpp"
 #include "logger.hpp"
 #include "shader_handler.hpp"
+#include "triangle1.hpp"
 
 void
 framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -73,22 +74,6 @@ draw_func(GLFWwindow* window)
   glClear(GL_COLOR_BUFFER_BIT);
 }
 
-Drawable
-createTraingle1()
-{
-  // Triangle 1 -- Shader setup
-  std::vector<ShaderUnit> shaders = std::vector<ShaderUnit>();
-  shaders.emplace_back("vertex_shader.glsl", GL_VERTEX_SHADER);
-  shaders.emplace_back("fragment_shader.glsl", GL_FRAGMENT_SHADER);
-  ShaderProgram shaderProgram = ShaderProgram(std::move(shaders));
-  // Triangle 1 construction
-  std::vector<float> vertices = { -0.5f, -0.5f, 0.0f, -0.5f, -0.5f,
-                                  0.0f,  0.0f,  0.5f, 0.0f };
-  std::vector<unsigned int> indices = { 0, 1, 2 };
-  return Drawable(
-    std::move(vertices), std::move(indices), 3, std::move(shaderProgram));
-};
-
 int
 main()
 {
@@ -103,7 +88,7 @@ main()
   logger::init();
 
   // Start drawing
-  Drawable triangle1 = createTraingle1();
+  Triangle1 triangle1 = Triangle1();
 
   // Infinite loop preventing close
   while (!glfwWindowShouldClose(window)) {

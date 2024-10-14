@@ -32,11 +32,13 @@ add_custom_command(
 
 # Main executable, if it is not in a library the source should be listed below
 add_executable(example
-	src/simple_example.cpp
-	src/shader_program.cpp
-	src/shader_unit.cpp
 	src/drawable.cpp
 	src/logger.cpp
+	src/shader_program.cpp
+	src/shader_unit.cpp
+	src/simple_example.cpp
+	src/triangle1.cpp
+	# Add shader dependency
 	${PROJECT_BINARY_DIR}/.shaders
 )
 

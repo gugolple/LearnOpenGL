@@ -1,16 +1,29 @@
 #include "shader_program.hpp"
 
 ShaderProgram::ShaderProgram(std::vector<ShaderUnit>&& shaderUnits)
-  : shaders(std::move(shaderUnits))
 {
-  GLuint shaderProgram = glCreateProgram();
-  for (const ShaderUnit& s : this->shaders) {
-    glAttachShader(shaderProgram, s.getShader());
+  this->shaderProgram = glCreateProgram();
+  for (const ShaderUnit& s : shaderUnits) {
+    glAttachShader(this->shaderProgram, s.getShader());
   }
-  glLinkProgram(shaderProgram);
+  this->constructShaderProgram();
+}
+
+ShaderProgram::ShaderProgram(std::initializer_list<ShaderUnit>&& shaderUnits)
+{
+  this->shaderProgram = glCreateProgram();
+  for (const ShaderUnit& s : shaderUnits) {
+    glAttachShader(this->shaderProgram, s.getShader());
+  }
+  this->constructShaderProgram();
+}
+
+void
+ShaderProgram::constructShaderProgram()
+{
+  glLinkProgram(this->shaderProgram);
   check_status_program(
     shaderProgram, GL_LINK_STATUS, "ERROR::SHADERPROGRAM::LINK_FAILED\n");
-  this->shaderProgram = shaderProgram;
 }
 
 ShaderProgram::~ShaderProgram()
@@ -29,6 +42,11 @@ ShaderProgram::getShaderProgram() const
 ShaderProgram::ShaderProgram(ShaderProgram&& other)
 {
   this->shaderProgram = other.shaderProgram;
-  this->shaders = std::move(other.shaders);
   other.shaderProgram = 0;
+}
+
+void
+ShaderProgram::userShaderProgram()
+{
+  glUseProgram(this->shaderProgram);
 }
