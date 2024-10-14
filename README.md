@@ -1,6 +1,6 @@
 # Intro
 
-This project is just me following the 
+This project is just me following the
 [learnopengl](https://learnopengl.com/book/book_pdf.pdf) book, with the
 objective of getting a small/classic game engine like first 3d games.
 
@@ -27,9 +27,21 @@ glfw not being the most trivial unit to compile.
 
 # Compiling
 
-For all the chapters there is a CMakeLists.txt file. the way I have
-setted it up to work is to invoke cmake and create a subdirectory with
-**build** in the name. This are the two most common invocations I use:
+For all the chapters there is a Makefile. The way I have setted it up to work is
+to invoke **make** with default target **run** or **debug**. This will
+automatically trigger the **cmake** builld system, start the compilation process
+and run the final executable. When set for debug it will start gdb with the
+target and compiled with debugging symbols.
+
+```{=sh}
+make [run]|[debug]
+```
+
+## Old method
+
+For all the chapters there is a CMakeLists.txt file. The way I have setted it up
+to work is to invoke cmake and create a subdirectory with **build** in the name.
+This are the two most common invocations I use:
 
 ```{=sh}
 # This at the chapter level so CMakeLists.txt is at current level
