@@ -100,8 +100,8 @@ main()
     // Draw
     draw_func(window);
     // Temporary until reworked into a class or other solution
-    triangle1.render();
     triangle2.render();
+    triangle1.render();
 
     // Swap screens, double buffered
     glfwSwapBuffers(window);
