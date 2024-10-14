@@ -56,10 +56,9 @@ target_include_directories(example PRIVATE ${CMAKE_SOURCE_DIR}/src/)
 target_include_directories(example PRIVATE ${CMAKE_SOURCE_DIR}/include/)
 
 # Local GLFW build linking
-target_link_directories(example PRIVATE
-	${CMAKE_SOURCE_DIR}/../../build_exports/usr/local/lib/)
-target_include_directories(example PRIVATE
-	${CMAKE_SOURCE_DIR}/../../build_exports/usr/local/include/)
+set(GLAD_PATH "${CMAKE_SOURCE_DIR}/../../build_exports/usr/local")
+target_link_directories(example PRIVATE ${GLAD_PATH}/lib/)
+target_include_directories(example PRIVATE ${GLAD_PATH}/include/)
 
 # Compile options, demanded by OpenGL in linux systems
 target_compile_options(example PRIVATE -lGL -lX11 -lpthread -lXrandr -lXi -ldl
