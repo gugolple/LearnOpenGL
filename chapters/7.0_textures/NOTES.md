@@ -12,6 +12,20 @@ Lint is automatically run when the other two are called, before them.
 
 ## New source files not detected
 
+```{=sh}
+make copy_figures
+```
+
+## New shader not detected
+
+```{=sh}
+make copy_shaders
+```
+
+# Old common problems and solutions
+
+## New source files not detected
+
 Either add them manually to CMakeLists.txt or if already automatically globbed
 by CMake then **rm <build>/Makefile** will retrigger the CMake call and add
 the new files to compilation.

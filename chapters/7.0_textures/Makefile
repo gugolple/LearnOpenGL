@@ -31,3 +31,14 @@ all: debug-build run-build
 
 clean:
 	rm -rf build/ build-debug/
+
+.PHONY: clean_shaders clean_figures
+
+clean_figures: 
+	rm -rf build/Makefile build-debug/Makefile
+
+clean_shaders: clean_figures
+	rm -rf build/.shaders build-debug/.shaders
+
+copy_shaders: clean_shaders run
+copy_figures: clean_figures run
