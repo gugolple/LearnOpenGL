@@ -12,6 +12,7 @@ project(
 	LANGUAGES C CXX
 )
 
+# Add clang-tidy globally
 set(CMAKE_CXX_CLANG_TIDY
 	clang-tidy;
 	-format-style='mozilla';
@@ -20,7 +21,6 @@ set(CMAKE_CXX_CLANG_TIDY
 	--fix;
 )
 
-# Copy shaders to final folder
 
 # We know all in figures we want to be available for compile and linking
 file(GLOB FIGURE_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/src/figures/*.cpp")
@@ -35,6 +35,7 @@ add_custom_command(
 	COMMAND touch -m ${PROJECT_BINARY_DIR}/.shaders 
 )
 
+# This library contains all the shared object files requested by the targets
 add_library(core_shared
 	OBJECT
 	# All shared objects
