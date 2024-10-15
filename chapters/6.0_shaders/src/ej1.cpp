@@ -15,7 +15,7 @@
 
 // My own files/libraries
 #include "drawable.hpp"
-#include "figures/triangle_ej2.hpp"
+#include "figures/triangle_ej1.hpp"
 #include "logger.hpp"
 #include "shader_handler.hpp"
 
@@ -88,7 +88,7 @@ main()
   logger::init();
 
   // Start drawing
-  std::unique_ptr<Drawable> triangle = std::make_unique<Triangle_ej2>();
+  std::unique_ptr<Drawable> triangle = std::make_unique<Triangle_ej1>();
 
   // Infinite loop preventing close
   while (!glfwWindowShouldClose(window)) {
