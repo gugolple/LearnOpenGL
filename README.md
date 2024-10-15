@@ -14,16 +14,9 @@ folder. All of this is under [chapters](./chapters/).
 
 # Setup
 
-Compile GLFW normally and then I have setted it up to use the relative path at
-this unit of './build_exports/'. For that install it with (expected to be run at 
-'./glfw/build/':
-
-```{=sh}
-make DESTDIR=../../build_exports/ install
-```
-
-You will probably need to follow the instructions given by the book due to
-glfw not being the most trivial unit to compile.
+At the root of the directory (make sure all the git subfolders have been cloned
+correctly) run **make**. This will launch the process for compiling **GLAD**
+and **GLFW** and leave them in the expected local folder.
 
 # Compiling
 
@@ -37,7 +30,25 @@ target and compiled with debugging symbols.
 make [run]|[debug]
 ```
 
-## Old method
+# Old methods
+
+This are the manual instructions that were followed until the Makefiles were
+added to handle the manual setup. They are kept due to being valuable
+information even if it currently not necessary.
+
+## Setup
+Compile GLFW normally and then I have setted it up to use the relative path at
+this unit of './build_exports/'. For that install it with (expected to be run at 
+'./glfw/build/':
+
+```{=sh}
+make DESTDIR=../../build_exports/ install
+```
+
+You will probably need to follow the instructions given by the book due to
+glfw not being the most trivial unit to compile.
+
+## Compiling 
 
 For all the chapters there is a CMakeLists.txt file. The way I have setted it up
 to work is to invoke cmake and create a subdirectory with **build** in the name.
