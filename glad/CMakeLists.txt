@@ -21,9 +21,10 @@ target_sources(
 	PUBLIC
 		FILE_SET public_headers
 		TYPE HEADERS
-		BASE_DIRS src
+		BASE_DIRS src include
 		FILES
 			src/glad.h
+			include/khrplatform.h
 	)
 
 # There is no need to propagate the GLAD includes to the rest of the project
