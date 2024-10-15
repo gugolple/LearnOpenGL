@@ -75,6 +75,12 @@ add_executable(ej3
 # Add GLAD to tge naub executable
 target_link_libraries(ej3 libglad.a core_shared)
 
+add_executable(ejc
+	src/ejc.cpp
+)
+# Add GLAD to tge naub executable
+target_link_libraries(ejc libglad.a core_shared)
+
 # Include self at src
 target_include_directories(core_shared PUBLIC ${CMAKE_SOURCE_DIR}/src/)
 
