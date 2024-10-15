@@ -4,7 +4,6 @@ all: install
 build/Makefile:
 	cmake . -S . -B build/
 
-
 build/libglad.a: build/Makefile
 	cd build ; make -j$(nproc)
 
