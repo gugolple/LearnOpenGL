@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.15...3.30)
 
+set(LOCAL_INCLUDE_PATH "${CMAKE_SOURCE_DIR}/../../build_exports/usr/local")
+
 project(
 	LearnOpenGl
 	VERSION 1.0
@@ -12,12 +14,6 @@ set(CMAKE_CXX_CLANG_TIDY
 	-checks=clang-analyzer-*,-clang-analyzer-cplusplus*;
 	--fix;
 )
-
-# Compile independently the GLAD library
-add_library(libglad STATIC src/glad/glad.c)
-# There is no need to propagate the GLAD includes to the rest of the project
-target_include_directories(libglad PRIVATE ${CMAKE_SOURCE_DIR}/include/)
-target_include_directories(libglad PUBLIC ${CMAKE_SOURCE_DIR}/src/glad/)
 
 # Copy shaders to final folder
 # This only works on "cmake" calls
@@ -46,7 +42,7 @@ add_executable(example
 )
 
 # Add GLAD to tge naub executable
-target_link_libraries(example libglad)
+target_link_libraries(example libglad.a)
 
 # Set the C++ version of the main executable for compilation
 set_property(TARGET example PROPERTY CXX_STANDARD 20)
@@ -57,10 +53,9 @@ target_include_directories(example PRIVATE ${CMAKE_SOURCE_DIR}/src/)
 # For GLAD/KHR headers
 target_include_directories(example PRIVATE ${CMAKE_SOURCE_DIR}/include/)
 
-# Local GLFW build linking
-set(GLAD_PATH "${CMAKE_SOURCE_DIR}/../../build_exports/usr/local")
-target_link_directories(example PRIVATE ${GLAD_PATH}/lib/)
-target_include_directories(example PRIVATE ${GLAD_PATH}/include/)
+# Add all the local directorires for include and linking
+target_link_directories(example PRIVATE ${LOCAL_INCLUDE_PATH}/lib/)
+target_include_directories(example PRIVATE ${LOCAL_INCLUDE_PATH}/include/)
 
 # Compile options, demanded by OpenGL in linux systems
 target_compile_options(example PRIVATE -lGL -lX11 -lpthread -lXrandr -lXi -ldl
