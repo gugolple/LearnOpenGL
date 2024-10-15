@@ -16,7 +16,7 @@ debug-build: lint build-debug/Makefile
 	cd build-debug ; make -j$(nproc)
 
 debug: debug-build
-	cd build-debug ; gdb ./example
+	cd build-debug ; gdb ./simple
 
 build/Makefile: CMakeLists.txt
 	cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
@@ -25,20 +25,9 @@ run-build: build/Makefile
 	cd build ; make -j$(nproc)
 
 run: run-build
-	cd build ; ./example
+	cd build ; ./simple
 
 all: debug-build run-build
 
 clean:
 	rm -rf build/ build-debug/
-
-.PHONY: clean_shaders clean_figures
-
-clean_figures: 
-	rm -rf build/Makefile build-debug/Makefile
-
-clean_shaders: clean_figures
-	rm -rf build/.shaders build-debug/.shaders
-
-copy_shaders: clean_shaders run
-copy_figures: clean_figures run
