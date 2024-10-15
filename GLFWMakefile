@@ -1,0 +1,15 @@
+all: install
+
+.PHONY: install clean
+
+build/Makefile: CMakeLists.txt
+	cmake -S . -B build/
+
+build/src/libglfw3.a: build/Makefile
+	cd build && make -j$(nproc)
+
+install: build/src/libglfw3.a
+	cd build && make DESTDIR=../../build_exports/ install
+
+clean:
+	rm -rf build/
