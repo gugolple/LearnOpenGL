@@ -21,7 +21,7 @@ debug: debug-build
 build/Makefile: CMakeLists.txt
 	cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 
-run-build: build/Makefile
+run-build: lint build/Makefile
 	cd build ; make -j$(nproc)
 
 run: run-build
@@ -31,3 +31,15 @@ all: debug-build run-build
 
 clean:
 	rm -rf build/ build-debug/
+
+.PHONY: clean_shaders
+clean_shaders:
+	rm build/.shaders
+
+copy_shaders: clean_shaders run
+
+.PHONY: clean_figures
+clean_figures:
+	rm -f build/Makefile
+
+copy_figures: clean_figures run
