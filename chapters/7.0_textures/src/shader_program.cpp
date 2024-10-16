@@ -29,7 +29,7 @@ ShaderProgram::constructShaderProgram()
 ShaderProgram::~ShaderProgram()
 {
   if (this->shaderProgram) {
-    glDeleteShader(this->shaderProgram);
+    glDeleteProgram(this->shaderProgram);
   }
 }
 
