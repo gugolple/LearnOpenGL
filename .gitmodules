@@ -4,3 +4,6 @@
 [submodule "LearnOpenGL"]
 	path = LearnOpenGL
 	url = https://github.com/JoeyDeVries/LearnOpenGL.git
+[submodule "stb"]
+	path = stb
+	url = https://github.com/nothings/stb

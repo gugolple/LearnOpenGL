@@ -1,5 +1,8 @@
-all: glad glfw
-.PHONY: glad glfw clean
+all: glad glfw stb
+.PHONY: glad glfw stb clean
+
+stb:
+	cp stb/stb_image.h build_exports/usr/local/include
 
 glad:
 	cd glad && make install
