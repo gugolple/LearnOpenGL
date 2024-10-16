@@ -2,6 +2,7 @@
 #define TRIANGLE1_HPP
 
 #include "drawable.hpp"
+#include "image_loader.hpp"
 
 class Triangle1 : public Drawable
 {
@@ -14,7 +15,8 @@ public:
   virtual const ShaderProgram& getShaderProgram();
 
 private:
-  unsigned int VBO, VAO;
+  unsigned int VBO, VAO, EBO;
+  ImageLoader image;
 };
 
 #endif
